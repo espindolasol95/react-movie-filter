@@ -15,17 +15,18 @@ function App() {
     //stati
      const [movies, setMovies] = useState(initialMovies); //array e funzione per aggiornare la lista dei film
      const [filteredMovies, setFilteredMovies] = useState(initialMovies);//array di film filtrati  e funzione per aggiornare
-     //const [selectedGenre, setSelectedGenre] = useState("");//genere selezionato dall' utente
-     //const [searchTerm, setSearchTerm] = useState("");//testo digitato nella barra di ricerxca
+     const [selectedGenre, setSelectedGenre] = useState("");//genere selezionato dall' utente
+     const [searchTerm, setSearchTerm] = useState("");//testo digitato nella barra di ricerxca
 
      useEffect(()=>{
         const result = movies
         .filter ((movie)=> !selectedGenre || movie.genre === selectedGenre)//se genre e vuoto,passa tutto, altrimenti filtra
 
-        .filter((movie) => !searchTerm || movie.title.toLowerCase().includes(searchTerm.toLowerCase()) // se searchterm e vuoto passa,altrimenti filtra
-         
+        .filter((movie) => !searchTerm || movie.title.toLowerCase().includes(searchTerm.toLowerCase()) // se searchterm e vuoto passa,altrimenti filtra   
     );
-     })
+    setFilteredMovies(result);//aggiorna lo stato dei film filtrati
+
+     },[movies, selectedGenre, searchTerm]);
 
     return(
         <div className="container my-4 ">
@@ -34,6 +35,8 @@ function App() {
                 <div className="col-md-6">
                     <label className="form-label">Filtra per genere</label>
                     <select className="form-select"
+                     value={selectedGenre}
+                     onChange={(e) => setSelectedGenre(e.target.value)}
 
                     >
                      <option value="Fantascienza">Fantascienza</option>
@@ -51,7 +54,13 @@ function App() {
                 </div>
                 <form className="row g-3 mb-4">
                     <div className="col-md-5">
-                        <input type="text" name="title" className="form-control" placeholder="Titolo" /> 
+                        <input 
+                        type="text" 
+                        name="title" 
+                        className="form-control" 
+                        placeholder="Titolo" 
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        /> 
                     </div>
                      <div className="col-md-5">
                      <input type="text" name="genre" className="form-control" placeholder="Genere" />
