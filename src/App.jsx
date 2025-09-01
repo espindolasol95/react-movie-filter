@@ -45,7 +45,6 @@ function App() {
                 <div className="col-md-6">
                     <label className="form-label">Filtra per genere</label>
                     <select className="form-select"
-                     value={selectedGenre}
                      onChange={(e) => setSelectedGenre(e.target.value)}
 
                     >
@@ -60,16 +59,19 @@ function App() {
                     <input type="text"
                     className="form-control"
                     placeholder="Scrivi un titolo"
+                     value={searchTerm}   
+                     onChange={(e) => setSearchTerm(e.target.value)} 
+
                     />
                 </div>
-                <form className="row g-3 mb-4">
+                <form onSubmit={handleAddMovie} className="row g-3 mb-4">
                     <div className="col-md-5">
                         <input 
                         type="text" 
                         name="title" 
                         className="form-control" 
                         placeholder="Titolo" 
-                        onChange={(e) => setSearchTerm(e.target.value)}
+                       
                         /> 
                     </div>
                      <div className="col-md-5">
@@ -83,6 +85,7 @@ function App() {
                     <button type="submit" className="btn btn-primary ">Aggiungi</button>    
                     </div>
                 </form>
+                <MovieList movies={filteredMovies} />
             </div>
         </div>
     )
