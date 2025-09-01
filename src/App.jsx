@@ -23,10 +23,20 @@ function App() {
         .filter ((movie)=> !selectedGenre || movie.genre === selectedGenre)//se genre e vuoto,passa tutto, altrimenti filtra
 
         .filter((movie) => !searchTerm || movie.title.toLowerCase().includes(searchTerm.toLowerCase()) // se searchterm e vuoto passa,altrimenti filtra   
-    );
-    setFilteredMovies(result);//aggiorna lo stato dei film filtrati
+     );
+     setFilteredMovies(result);//aggiorna lo stato dei film filtrati
 
      },[movies, selectedGenre, searchTerm]);
+
+     const handleAddMovie = (e) =>{
+        e.preventDefault();
+        const title = e.target.title.value.trim();
+        const genre = e.target.genre.value.trim();
+        title && genre && setMovies([...movies, { title, genre }]);
+        e.target.reset();
+
+     };
+
 
     return(
         <div className="container my-4 ">
@@ -63,7 +73,11 @@ function App() {
                         /> 
                     </div>
                      <div className="col-md-5">
-                     <input type="text" name="genre" className="form-control" placeholder="Genere" />
+                     <input type="text" 
+                     name="genre"
+                      className="form-control"
+                      placeholder="Genere" 
+                      />
                     </div>
                     <div className="col-md-2">
                     <button type="submit" className="btn btn-primary ">Aggiungi</button>    
