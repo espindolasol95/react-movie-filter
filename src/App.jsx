@@ -13,7 +13,20 @@ const initialMovies = [
 
 function App() {
     //stati
-    
+     const [movies, setMovies] = useState(initialMovies); //array e funzione per aggiornare la lista dei film
+     const [filteredMovies, setFilteredMovies] = useState(initialMovies);//array di film filtrati  e funzione per aggiornare
+     //const [selectedGenre, setSelectedGenre] = useState("");//genere selezionato dall' utente
+     //const [searchTerm, setSearchTerm] = useState("");//testo digitato nella barra di ricerxca
+
+     useEffect(()=>{
+        const result = movies
+        .filter ((movie)=> !selectedGenre || movie.genre === selectedGenre)//se genre e vuoto,passa tutto, altrimenti filtra
+
+        .filter((movie) => !searchTerm || movie.title.toLowerCase().includes(searchTerm.toLowerCase()) // se searchterm e vuoto passa,altrimenti filtra
+         
+    );
+     })
+
     return(
         <div className="container my-4 ">
             <h1 className="text-center mb-4">MOVIES FILTER</h1>
