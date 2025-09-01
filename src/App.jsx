@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
+import MovieList from "./assets/components/MovieList.jsx"
 // Dati iniziali
 const initialMovies = [
   { title: "Inception", genre: "Fantascienza" },
@@ -11,6 +12,8 @@ const initialMovies = [
 ];
 
 function App() {
+    //stati
+    
     return(
         <div className="container my-4 ">
             <h1 className="text-center mb-4">MOVIES FILTER</h1>
