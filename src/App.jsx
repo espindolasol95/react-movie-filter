@@ -12,24 +12,38 @@ const initialMovies = [
 
 function App() {
     return(
-        <div className="container">
+        <div className="container my-4 ">
             <h1 className="text-center mb-4">MOVIES FILTER</h1>
             <div className="row mb-4">
                 <div className="col-md-6">
                     <label className="form-label">Filtra per genere</label>
                     <select className="form-select"
-                     value={selectedGenre}
-                     onChange={(e) => setSelectedGenre(e.target.value)}
-                   
+
                     >
                      <option value="Fantascienza">Fantascienza</option>
                      <option value="Thriller">Thriller</option>
                      <option value="Romantico">Romantico</option>
                      <option value="Azione">Azione</option>
                     </select>
-
-
                 </div>
+                <div className="col mb-5">
+                    <label className="form-label">Cerca per titolo:</label>
+                    <input type="text"
+                    className="form-control"
+                    placeholder="Scrivi un titolo"
+                    />
+                </div>
+                <form className="row g-3 mb-4">
+                    <div className="col-md-5">
+                        <input type="text" name="title" className="form-control" placeholder="Titolo" /> 
+                    </div>
+                     <div className="col-md-5">
+                     <input type="text" name="genre" className="form-control" placeholder="Genere" />
+                    </div>
+                    <div className="col-md-2">
+                    <button type="submit" className="btn btn-primary ">Aggiungi</button>    
+                    </div>
+                </form>
             </div>
         </div>
     )
